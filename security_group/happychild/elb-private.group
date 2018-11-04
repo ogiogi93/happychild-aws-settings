@@ -1,0 +1,48 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+ec2 "vpc-0aa7f3b33f1e7c7a4" do
+  security_group "elb-private" do
+    description "ELB for private access"
+
+    tags(
+      "Name" => "elb-private"
+    )
+
+    ingress do
+      permission :any do
+        ip_ranges(
+          "113.36.191.131/32" # holiday-office
+        )
+      end
+
+      permission :tcp, 80..80 do
+        ip_ranges(
+          "27.0.1.152/29",
+          "27.0.1.24/29",
+          "27.0.3.144/29",
+          "27.0.3.152/29",
+          "54.240.200.0/24"
+        )
+      end
+
+      permission :tcp, 443..443 do
+        ip_ranges(
+          "27.0.1.152/29",
+          "27.0.1.24/29",
+          "27.0.3.144/29",
+          "27.0.3.152/29",
+          "54.240.200.0/24"
+        )
+      end
+    end
+
+    egress do
+      permission :any do
+        ip_ranges(
+          "0.0.0.0/0"
+        )
+      end
+    end
+  end
+end

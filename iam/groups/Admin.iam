@@ -1,0 +1,10 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+group "Admin", :path=>"/" do
+  # no policy
+
+  attached_managed_policies(
+    "arn:aws:iam::aws:policy/AdministratorAccess"
+  )
+end

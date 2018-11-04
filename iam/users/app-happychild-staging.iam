@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+user "app-happychild-staging", :path=>"/" do
+  # login_profile :password_reset_required=>true
+
+  groups(
+    # no group
+  )
+
+  # no policy
+
+  attached_managed_policies(
+    "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+  )
+end
+

@@ -1,0 +1,10 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Dir.glob(File.expand_path('../iam/templates/*.iam', __FILE__)) do |file|
+  require file
+end
+
+Dir.glob(File.expand_path('../iam/{groups,instance-profiles,policies,roles,users}/*.iam', __FILE__)) do |file|
+  require file
+end

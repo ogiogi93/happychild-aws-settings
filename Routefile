@@ -1,0 +1,8 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require File.expand_path('../route53/spf', __FILE__)
+
+Dir.glob(File.expand_path('../route53/*.route', __FILE__)) do |file|
+  require file
+end
