@@ -63,7 +63,7 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
         ENV: 'STAGING',
         MYSQL_USER: 'root',
         MYSQL_HOST: 'happychild-staging-001.cnghgma2cgdu.ap-northeast-1.rds.amazonaws.com',
-        MYSQL_DATABASE: 'happychld',
+        MYSQL_DATABASE: 'happychild',
         MYSQL_PASSWORD: provideFromFile('mysql_password'),
     },
     log_configuration: {
