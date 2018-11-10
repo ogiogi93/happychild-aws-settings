@@ -2,19 +2,14 @@
 # vi: set ft=ruby :
 
 ec2 "vpc-0aa7f3b33f1e7c7a4" do
-  security_group "ecs-staging" do
-    description "ecs-staging"
+  security_group "bastion" do
+    description "bastion"
 
     ingress do
       permission :tcp, 22..22 do
-        groups(
-          "bastion",
-        )
-      end
-      permission :tcp, 80..80 do
-        groups(
-          "elb-private",
-          "elb-public",
+        ip_ranges(
+          "113.36.191.131/32", # holiday-office
+          "124.25.241.46/32" # my house
         )
       end
     end

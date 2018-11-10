@@ -10,4 +10,5 @@
 /.idea
 
 ."ruby-version
+hako/secrets.env
 Gemfile.lock

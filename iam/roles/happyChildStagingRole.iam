@@ -1,0 +1,37 @@
+role "happyChildStagingRole", :path=>"/" do
+  instance_profiles(
+    # no instance_profile
+  )
+
+  assume_role_policy_document do
+    {"Version"=>"2012-10-17",
+     "Statement"=>
+      [{"Sid"=>"",
+        "Effect"=>"Allow",
+        "Principal"=>{"Service"=>"ecs-tasks.amazonaws.com"},
+        "Action"=>"sts:AssumeRole"}]}
+  end
+
+  policy "getNginxConfig" do
+    {"Version"=>"2012-10-17",
+     "Statement"=>
+      [{"Effect"=>"Allow",
+        "Action"=>["s3:GetObject"],
+        "Resource"=>"arn:aws:s3:::happychild-infra/hako/front_config/*"}]}
+  end
+
+  policy "serviceLog" do
+    {"Version"=>"2012-10-17",
+     "Statement"=>
+      [{"Effect"=>"Allow",
+        "Action"=>["s3:ListBucket"],
+        "Resource"=>["arn:aws:s3:::happychild-service-logs"]},
+       {"Effect"=>"Allow",
+        "Action"=>["s3:PutObject"],
+        "Resource"=>["arn:aws:s3:::happychild-service-logs/staging/*"]}]}
+  end
+
+  attached_managed_policies(
+    # attached_managed_policy
+  )
+end

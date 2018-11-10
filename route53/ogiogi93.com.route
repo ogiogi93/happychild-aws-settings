@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+hosted_zone "ogiogi93.com." do
+  rrset "recod-admin-stg.ogiogi93.com.", "CNAME" do
+    ttl 300
+    resource_records(
+      "ec2-52-42-152-27.us-west-2.compute.amazonaws.com"
+    )
+  end
+
+  rrset "recod-stg.ogiogi93.com.", "CNAME" do
+    ttl 300
+    resource_records(
+      "ec2-52-42-152-27.us-west-2.compute.amazonaws.com"
+    )
+  end
+end
