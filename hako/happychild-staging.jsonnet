@@ -1,8 +1,7 @@
 local appId = std.extVar('appId');
 
 local region = 'ap-northeast-1';
-# local elbSecurityGroup = ['sg-016fb077dfde5c3dc']; # private
-local elbSecurityGroup = ['sg-07616906134585910']; # public
+local elbSecurityGroup = ['sg-016fb077dfde5c3dc']; # private
 local taskSecurityGroup = ['sg-0a40e5d4ba5c7ad61'];
 local privateSubnets = ['subnet-05906a4574afa4df3', 'subnet-0871af97fc92a0721'];
 local publicSubnets = ['subnet-00eda27c49f7f4838', 'subnet-03842aef47186f750'];
@@ -79,6 +78,7 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
   sidecars: {
     front: {
       image_tag: '842367937408.dkr.ecr.ap-northeast-1.amazonaws.com/hako-nginx',
+      port: 80,
       log_configuration: {
         log_driver: 'awslogs',
         options: {
@@ -90,9 +90,8 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
     },
   },
   scripts: [
-      (import 'front.libsonnet') + {
-        backend_port: 8000,
-        client_max_body_size: '100m',
-      },
+    (import 'front.libsonnet') + {
+       backend_port: 8000,
+    },
   ],
 }
