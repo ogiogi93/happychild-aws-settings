@@ -1,7 +1,8 @@
 local appId = std.extVar('appId');
 
 local region = 'ap-northeast-1';
-local elbSecurityGroup = ['sg-016fb077dfde5c3dc'];
+# local elbSecurityGroup = ['sg-016fb077dfde5c3dc']; # private
+local elbSecurityGroup = ['sg-07616906134585910']; # public
 local taskSecurityGroup = ['sg-0a40e5d4ba5c7ad61'];
 local privateSubnets = ['subnet-05906a4574afa4df3', 'subnet-0871af97fc92a0721'];
 local publicSubnets = ['subnet-00eda27c49f7f4838', 'subnet-03842aef47186f750'];
@@ -91,6 +92,7 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
   scripts: [
       (import 'front.libsonnet') + {
         backend_port: 8000,
+        client_max_body_size: '100m',
       },
   ],
 }
