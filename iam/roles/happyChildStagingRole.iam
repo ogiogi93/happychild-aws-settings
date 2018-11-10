@@ -1,4 +1,4 @@
-role "holidayWorkflowStagingRole", :path=>"/" do
+role "happyChildStagingRole", :path=>"/" do
   instance_profiles(
     # no instance_profile
   )
@@ -17,7 +17,7 @@ role "holidayWorkflowStagingRole", :path=>"/" do
      "Statement"=>
       [{"Effect"=>"Allow",
         "Action"=>["s3:GetObject"],
-        "Resource"=>"arn:aws:s3:::holiday-infra/hako/nginx_front/*"}]}
+        "Resource"=>"arn:aws:s3:::happychild-infra/hako/nginx_front/*"}]}
   end
 
   policy "serviceLog" do
@@ -25,157 +25,10 @@ role "holidayWorkflowStagingRole", :path=>"/" do
      "Statement"=>
       [{"Effect"=>"Allow",
         "Action"=>["s3:ListBucket"],
-        "Resource"=>["arn:aws:s3:::holiday-service-logs"]},
+        "Resource"=>["arn:aws:s3:::happychild-service-logs"]},
        {"Effect"=>"Allow",
         "Action"=>["s3:PutObject"],
-        "Resource"=>["arn:aws:s3:::holiday-service-logs/staging/*"]}]}
-  end
-
-  policy "runEcsTask" do
-    {"Version"=>"2012-10-17",
-     "Statement"=>
-      [{"Effect"=>"Allow",
-        "Action"=>["ecs:RunTask"],
-        "Resource"=>[
-            "arn:aws:ecs:ap-northeast-1:417956609031:task-definition/holiday-push-staging",
-            "arn:aws:ecs:ap-northeast-1:417956609031:task-definition/holiday-scraper-staging"]}]}
-  end
-
-  policy "assumeRole" do
-    {"Version"=>"2012-10-17",
-     "Statement"=>
-      [{"Effect"=>"Allow",
-        "Action"=>["sts:AssumeRole"],
-        "Resource"=>[
-            "arn:aws:iam::417956609031:role/holidayWorkflowStagingRole",
-        ]}]}
-  end
-
-  policy "getCloudWatchLogs" do
-    {"Version"=>"2012-10-17",
-     "Statement"=>
-      [{"Effect"=>"Allow",
-        "Action"=>["s3:ListBucket"],
-        "Resource"=>["arn:aws:s3:::holiday-cloudwatch-logs"]},
-       {"Effect"=>"Allow",
-        "Action"=>["s3:GetObject"],
-        "Resource"=>["arn:aws:s3:::holiday-cloudwatch-logs/*"]}]}
-  end
-
-  policy "uploadToHolidayDataMartDev" do
-    {"Version"=>"2012-10-17",
-     "Statement"=>
-      [{"Effect"=>"Allow",
-        "Action"=>["s3:ListBucket"],
-        "Resource"=>["arn:aws:s3:::holiday-datamart-dev"]},
-       {"Effect"=>"Allow",
-        "Action"=>["s3:PutObject", "s3:GetObject"],
-        "Resource"=>["arn:aws:s3:::holiday-datamart-dev/*"]}]}
-  end
-
-  policy "loadFromHolidayDataMartPrd" do
-    {"Version"=>"2012-10-17",
-     "Statement"=>
-      [{"Effect"=>"Allow",
-        "Action"=>["s3:ListBucket"],
-        "Resource"=>["arn:aws:s3:::holiday-datamart"]},
-       {"Effect"=>"Allow",
-        "Action"=>["s3:GetObject"],
-        "Resource"=>["arn:aws:s3:::holiday-datamart/*"]}]}
-  end
-
-  policy "uploadToHolidayWorkflowResourcesDev" do
-    {"Version"=>"2012-10-17",
-     "Statement"=>
-      [{"Effect"=>"Allow",
-        "Action"=>["s3:ListBucket"],
-        "Resource"=>["arn:aws:s3:::holiday-workflow-dev"]},
-       {"Effect"=>"Allow",
-        "Action"=>["s3:PutObject", "s3:GetObject"],
-        "Resource"=>["arn:aws:s3:::holiday-workflow-dev/*"]}]}
-  end
-
-  policy "putToDynamoDB" do
-    {"Version"=>"2012-10-17",
-     "Statement"=>
-      [{"Effect"=>"Allow",
-        "Action"=>["dynamodb:PutItem", "dynamodb:BatchWriteItem"],
-        "Resource"=>["arn:aws:dynamodb:ap-northeast-1:417956609031:table/holiday_feed_dev.*"]}]}
-  end
-
-  policy "executeQueryOnAthena" do
-    {"Version"=> "2012-10-17",
-      "Statement"=> [
-          {
-              "Effect"=> "Allow",
-              "Action"=> [
-                  "athena:BatchGetQueryExecution",
-                  "athena:CancelQueryExecution",
-                  "athena:GetCatalogs",
-                  "athena:GetExecutionEngine",
-                  "athena:GetExecutionEngines",
-                  "athena:GetNamespace",
-                  "athena:GetNamespaces",
-                  "athena:GetQueryExecution",
-                  "athena:GetQueryExecutions",
-                  "athena:GetQueryResults",
-                  "athena:GetQueryResultsStream",
-                  "athena:GetTable",
-                  "athena:GetTables",
-                  "athena:ListQueryExecutions",
-                  "athena:RunQuery",
-                  "athena:StartQueryExecution",
-                  "athena:StopQueryExecution"
-              ],
-              "Resource"=> [
-                  "*"
-              ]
-          },
-          {
-              "Effect"=> "Allow",
-               "Action"=> [
-                   "glue:CreateDatabase",
-                   "glue:DeleteDatabase",
-                   "glue:GetDatabase",
-                   "glue:GetDatabases",
-                   "glue:UpdateDatabase",
-                   "glue:CreateTable",
-                   "glue:DeleteTable",
-                   "glue:BatchDeleteTable",
-                   "glue:UpdateTable",
-                   "glue:GetTable",
-                   "glue:GetTables",
-                   "glue:BatchCreatePartition",
-                   "glue:CreatePartition",
-                   "glue:DeletePartition",
-                   "glue:BatchDeletePartition",
-                   "glue:UpdatePartition",
-                   "glue:GetPartition",
-                   "glue:GetPartitions",
-                   "glue:BatchGetPartition"
-               ],
-               "Resource"=> [
-                   "*"
-               ]
-          },
-          {
-              "Effect"=> "Allow",
-              "Action"=> [
-                  "s3:GetBucketLocation",
-                  "s3:GetObject",
-                  "s3:ListBucket",
-                  "s3:ListBucketMultipartUploads",
-                  "s3:ListMultipartUploadParts",
-                  "s3:AbortMultipartUpload",
-                  "s3:CreateBucket",
-                  "s3:PutObject"
-              ],
-              "Resource"=> [
-                  "arn:aws:s3:::aws-athena-query-results-*"
-              ]
-          }
-      ]
-    }
+        "Resource"=>["arn:aws:s3:::happychild-service-logs/staging/*"]}]}
   end
 
   attached_managed_policies(
