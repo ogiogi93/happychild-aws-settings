@@ -12,7 +12,8 @@ ec2 "vpc-0aa7f3b33f1e7c7a4" do
     ingress do
       permission :any do
         ip_ranges(
-          "113.36.191.131/32" # holiday-office
+          "113.36.191.131/32", # holiday-office
+          "124.25.241.46/32" # my house
         )
       end
 
