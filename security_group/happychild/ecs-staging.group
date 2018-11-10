@@ -11,9 +11,10 @@ ec2 "vpc-0aa7f3b33f1e7c7a4" do
           "bastion",
         )
       end
-      permission :tcp, 32768..60999 do
+      permission :tcp, 80..80 do
         groups(
           "elb-private",
+          "elb-public",
         )
       end
     end
