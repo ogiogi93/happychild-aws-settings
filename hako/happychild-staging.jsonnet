@@ -15,7 +15,7 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
     cluster: 'happychild-staging',
     desired_count: 1,
     task_role_arn: 'arn:aws:iam::842367937408:role/happyChildStagingRole',
-    elv_v2: {
+    elb_v2: {
       vpc_id: 'vpc-0aa7f3b33f1e7c7a4',
       health_check_path: '/ping',
       listeners: [
@@ -33,8 +33,8 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
       security_groups: elbSecurityGroup,
       load_balancer_attributes: {
         'access_logs.s3.enabled': 'true',
-        'access_logs.s3.bucket': 'hako-access-logs',
-        'access_logs.s3.prefix': std.format('hako-%s', appId),
+        'access_logs.s3.bucket': 'happychild-hako-access-logs',
+        'access_logs.s3.prefix': std.format('hako-staging-%s', appId),
         'idle_timeout.timeout_seconds': '5',
       },
       target_group_attributes: {
