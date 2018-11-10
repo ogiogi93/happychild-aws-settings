@@ -2,7 +2,49 @@
 # vi: set ft=ruby :
 
 hosted_zone "happy-child.jp." do
+  rrset "happy-child.jp.", "MX" do
+    ttl 300
+    resource_records(
+      "10 inbound-smtp.us-west-2.amazonaws.com."
+    )
+  end
+
+  rrset "_amazonses.happy-child.jp.", "TXT" do
+    ttl 300
+    resource_records(
+      "\"KCoPLEWRrj9reeSNBCbhltCi3JMKya37IK18gMGsG7M=\""
+    )
+  end
+
+  rrset "56kfdx454kqjeis5jvvowtl2pdiqc7g5._domainkey.happy-child.jp.", "CNAME" do
+    ttl 300
+    resource_records(
+      "56kfdx454kqjeis5jvvowtl2pdiqc7g5.dkim.amazonses.com."
+    )
+  end
+
+  rrset "7wsndgfvqaroowl7yz6ta3kg2o2afpnh._domainkey.happy-child.jp.", "CNAME" do
+    ttl 300
+    resource_records(
+      "7wsndgfvqaroowl7yz6ta3kg2o2afpnh.dkim.amazonses.com."
+    )
+  end
+
+  rrset "ilysp5u3ebhy73oxao5442lfkqtxlecm._domainkey.happy-child.jp.", "CNAME" do
+    ttl 300
+    resource_records(
+      "ilysp5u3ebhy73oxao5442lfkqtxlecm.dkim.amazonses.com."
+    )
+  end
+
+  rrset "autodiscover.happy-child.jp.", "CNAME" do
+    ttl 300
+    resource_records(
+      "autodiscover.mail.us-west-2.awsapps.com."
+    )
+  end
+
   rrset "staging.happy-child.jp.", "A" do
-    dns_name "dualstack.hako-happychild-staging-786713639.ap-northeast-1.elb.amazonaws.com"
+    dns_name "dualstack.hako-happychild-staging-786713639.ap-northeast-1.elb.amazonaws.com."
   end
 end

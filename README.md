@@ -13,6 +13,12 @@ envchain happychild piculet -a --dry-run -f Groupfile  # dry-run
 envchain happychild piculet -a -f Groupfile # apply
 ```
 
+- Route 53
+```
+envchain happychild roadwork -a --dry-run -f Routefile # dry-run
+envchain happychild roadwork -a -f Routefile # dry-run
+```
+
 - Deploy
 Must put 'secrets.env' on '/hako/secrets.env' before deploy. 'secrets.env' include some secret key like db passwords.
 ```
