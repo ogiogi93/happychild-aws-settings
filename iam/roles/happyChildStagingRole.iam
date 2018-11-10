@@ -17,7 +17,7 @@ role "happyChildStagingRole", :path=>"/" do
      "Statement"=>
       [{"Effect"=>"Allow",
         "Action"=>["s3:GetObject"],
-        "Resource"=>"arn:aws:s3:::happychild-infra/hako/nginx_front/*"}]}
+        "Resource"=>"arn:aws:s3:::happychild-infra/hako/front_config/*"}]}
   end
 
   policy "serviceLog" do
