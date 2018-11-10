@@ -12,8 +12,6 @@ role "ecsTaskExecutionRole", :path=>"/" do
         "Action"=>"sts:AssumeRole"}]}
   end
 
-  # no policy
-
   attached_managed_policies(
     "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
   )
