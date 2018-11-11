@@ -17,6 +17,12 @@ ec2 "vpc-0aa7f3b33f1e7c7a4" do
           "elb-public",
         )
       end
+      permission :tcp, 32768..60999 do
+        groups(
+          "elb-private",
+          "elb-public",
+        )
+      end
     end
 
     egress do
