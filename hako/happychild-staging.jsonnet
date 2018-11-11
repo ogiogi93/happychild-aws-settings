@@ -14,7 +14,7 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
     type: 'ecs',
     region: region,
     cluster: 'happychild-staging',
-    desired_count: 1,
+    desired_count: 2,
     task_role_arn: 'arn:aws:iam::842367937408:role/happyChildStagingRole',
     elb_v2: {
       vpc_id: 'vpc-0aa7f3b33f1e7c7a4',
