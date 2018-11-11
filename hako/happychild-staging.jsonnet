@@ -79,7 +79,8 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
   sidecars: {
     front: {
       image_tag: '842367937408.dkr.ecr.ap-northeast-1.amazonaws.com/hako-nginx',
-      port: 80,
+      memory: 64
+      cpu: 32
       log_configuration: {
         log_driver: 'awslogs',
         options: {
