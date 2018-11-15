@@ -49,7 +49,7 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
   },
   app: {
     image: '842367937408.dkr.ecr.ap-northeast-1.amazonaws.com/happychild',
-    memory_reservation: 512,
+    memory_reservation: '512',
     command: ["run_develop"],
     env: {
         ENV: 'STAGING',
