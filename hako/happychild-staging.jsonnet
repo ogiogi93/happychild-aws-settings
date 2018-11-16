@@ -49,7 +49,7 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
   },
   app: {
     image: '842367937408.dkr.ecr.ap-northeast-1.amazonaws.com/happychild',
-    memory_reservation: '512',
+    memory_reservation: '1024',
     command: ["run_develop"],
     env: {
         ENV: 'STAGING',
@@ -70,8 +70,8 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
   sidecars: {
     front: {
       image_tag: '842367937408.dkr.ecr.ap-northeast-1.amazonaws.com/hako-nginx',
-      memory: 64,
-      cpu: 32,
+      memory: '64',
+      cpu: '32',
       log_configuration: {
         log_driver: 'awslogs',
         options: {
