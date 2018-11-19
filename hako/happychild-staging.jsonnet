@@ -32,6 +32,15 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
       ],
       subnets: publicSubnets,
       security_groups: elbSecurityGroup,
+      load_balancer_attributes: {
+        'access_logs.s3.enabled': 'true',
+        'access_logs.s3.bucket': 'happychild-hako-access-logs',
+        'access_logs.s3.prefix': std.format('hako-%s', appId),
+        'idle_timeout.timeout_seconds': '10',
+      },
+      target_group_attributes: {
+        'deregistration_delay.timeout_seconds': '60',
+      },
     },
     execution_role_arn:'arn:aws:iam::842367937408:role/ecsTaskExecutionRole',
     cpu: '1024',
