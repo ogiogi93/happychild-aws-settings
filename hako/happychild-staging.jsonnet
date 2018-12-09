@@ -66,6 +66,9 @@ local provideFromFile(name) = std.native('provide.file')(std.toString({ path: 's
         MYSQL_HOST: 'happychild-staging-001.cnghgma2cgdu.ap-northeast-1.rds.amazonaws.com',
         MYSQL_DATABASE: 'happychild',
         MYSQL_PASSWORD: provideFromFile('mysql_password'),
+        ZENDESK_TOKEN: provideFromFile('zendesk_token'),
+        ZENDESK_EMAIL: 'mail.ogiwara93@gmail.com',
+        ZENDESK_SUBDOMAIN: 'happychild',
     },
     log_configuration: {
         log_driver: 'awslogs',
