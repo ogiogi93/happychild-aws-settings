@@ -44,7 +44,7 @@ hosted_zone "happy-child.jp." do
     )
   end
 
-  rrset "staging.happy-child.jp.", "A" do
-    dns_name "dualstack.hako-happychild-staging-1019496346.ap-northeast-1.elb.amazonaws.com"
+  rrset "shinagawa.happy-child.jp.", "A" do
+    dns_name "dualstack.hako-happychild-staging-787178582.ap-northeast-1.elb.amazonaws.com."
   end
 end
